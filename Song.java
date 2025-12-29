@@ -1,22 +1,18 @@
-public class Song{
-    private String title;
-    private int duration;
+public class Song extends Media  {
     private Artist artist;
     public Song(String title, int duration, Artist artist){
-        this.title=title;
-        this.duration=duration;
+        super(title, duration);
         this.artist=artist;
     }
-    public String getTitle(){
-        return title;
+
+    public Artist getArtist() {
+        return artist;
     }
-    public int getDuration() {
-        return duration;
+
+    public void play(){
+        System.out.println(title + " by " + artist.getName());
     }
-    public void setDuration(int duration) {
-        this.duration = duration;
-    }
-    public void show(){
-        System.out.println("Song: "+title+" (by "+artist.getName()+ ") ("+duration+"sec)");
+    public String toString(){
+        return "Song: "+title +" (by "+artist.getName()+ ") ("+ duration +"sec)";
     }
 }

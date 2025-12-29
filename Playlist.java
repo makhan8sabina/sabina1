@@ -1,20 +1,41 @@
-public class Playlist{
+import java.util.ArrayList;
+import java.util.Comparator;
+
+public class Playlist {
     private String name;
-    private int songCount;
-    public Playlist(String name,int songCount){
-        this.name=name;
-        this.songCount=songCount;
+    private ArrayList<Media> mediaList;
+
+    public Playlist(String name) {
+        this.name = name;
+        this.mediaList = new ArrayList<>();
     }
-    public String getName(){
-        return name;
+
+    public void addMedia(Media m) {
+        mediaList.add(m);
     }
-    public int getSongCount(){
-        return songCount;
+
+    public void playAll() {
+        for (Media m : mediaList) {
+            m.play();
+        }
     }
-    public void setSongCount(int songCount){
-        this.songCount=songCount;
+
+    public void showLongMedia(int minDuration) {
+        for (Media m : mediaList) {
+            if (m.getDuration() > minDuration) {
+                System.out.println(m);
+            }
+        }
     }
-    public void show(){
-        System.out.println("Playlist: "+name+" ("+songCount+")");
+    public void searchByTitle(String keyword){
+        for(Media m:mediaList){
+            if (m.getTitle().toLowerCase().contains(keyword.toLowerCase())){
+                System.out.println(m);
+            }
+        }
+    }
+
+    public void sortByDuration() {
+        mediaList.sort(Comparator.comparing(Media::getDuration));
     }
 }
